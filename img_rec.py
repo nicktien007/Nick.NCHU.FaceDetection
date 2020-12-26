@@ -8,7 +8,7 @@ import cv2
 import imutils
 from skimage import io
 
-from face_rec_service import calc_rec_name, load_face_info
+from face_rec_service import calc_rec_name_img, load_face_info
 
 if len(sys.argv) != 2:
     print("缺少要辨識的圖片名稱")
@@ -22,7 +22,7 @@ def main():
     load_face_info()
     # 針對需要辨識的人臉同樣進行處理
     img = io.imread(img_path)
-    rec_name, x1, y1 = calc_rec_name(img)
+    rec_name, x1, y1 = calc_rec_name_img(img)
 
     # 將辨識出的人名印到圖片上面
     cv2.putText(img, rec_name, (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)

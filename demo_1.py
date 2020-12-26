@@ -1,6 +1,5 @@
 import dlib
 import cv2
-import imutils
 
 # 選擇第一隻攝影機
 cap = cv2.VideoCapture(0)
@@ -28,14 +27,9 @@ while (cap.isOpened()):
         y2 = d.bottom()
         text = " %2.2f ( %d )" % (scores[i], idx[i])
 
-        # 繪製出偵測人臉的矩形範圍
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 4, cv2.LINE_AA)
-
         # 標上人臉偵測分數與人臉方向子偵測器編號
         cv2.putText(frame, text, (x1, y1), cv2.FONT_HERSHEY_DUPLEX,
                     0.7, (255, 255, 255), 1, cv2.LINE_AA)
-        # cv2.putText(frame, "aaaaa", (x1, y1), cv2.FONT_HERSHEY_DUPLEX,
-        #             0.7, (255, 255, 255), 1, cv2.LINE_AA)
 
         # 給68特徵點辨識取得一個轉換顏色的frame
         landmarks_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

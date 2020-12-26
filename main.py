@@ -2,7 +2,7 @@ import os
 
 import dlib
 import cv2
-from face_rec_service import load_face_info, calc_rec_name_2
+from face_rec_service import load_face_info, calc_rec_name_camera
 import numpy as np
 
 # 選擇第一隻攝影機
@@ -57,10 +57,10 @@ def main():
                 register_user(d, frame, x1, x2, y1, y2)
 
             if (current_frame_face_cnt == last_frame_face_cnt or current_frame_face_cnt == 0) and rec_name != 'Unknown':
-                # print(f"   >>> scene 1: 當前幀和上一幀相比沒有發生人臉數變化 / no faces cnt changes in this frame!!!")
+                # print(f">>> 當前幀和上一幀相比沒有發生人臉數變化")
                 break
 
-            rec_name = calc_rec_name_2(frame)
+            rec_name = calc_rec_name_camera(frame)
 
             msg = 'Unknown???' if rec_name == 'Unknown' else f"{rec_name},Unlock!!"
 
@@ -79,7 +79,7 @@ def main():
 
 
 def register_user(d, frame, x1, x2, y1, y2):
-    existing_faces_cnt = check_existing_faces_cnt()
+    existing_faces_cnt = get_existing_faces_cnt()
     # 計算矩形框大小 / Compute the size of rectangle box
     height = (y2 - y1)
     width = (x2 - x1)
@@ -95,11 +95,11 @@ def register_user(d, frame, x1, x2, y1, y2):
 
 
 # 如果有之前錄入的人臉, 在之前 person_x 的序號按照 person_x+1 開始寫入
-def check_existing_faces_cnt():
+def get_existing_faces_cnt():
     if os.listdir("./rec/"):
         # 獲取已錄入的最後一個人臉序號 / Get the order of latest person
         person_list = os.listdir("./rec/")
-        return len(person_list) + 1
+        return len(person_list)
     # 如果第一次存儲或者沒有之前錄入的人臉, 按照 person_1 開始寫入
     else:
         return 1
