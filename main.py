@@ -50,8 +50,8 @@ def main():
             cv2.putText(frame, msg, (x1 + 20, y1 - 10), cv2.FONT_HERSHEY_DUPLEX,
                         0.7, (255, 255, 255), 1, cv2.LINE_AA)
 
-            cv2.putText(frame, "S: Save current face", (20, 650), cv2.FONT_ITALIC, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
-            cv2.putText(frame, "Esc: Quit", (20, 700), cv2.FONT_ITALIC, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
+            cv2.putText(frame, "S: Save current face", (20, 550), cv2.FONT_ITALIC, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
+            cv2.putText(frame, "Esc: Quit", (20, 650), cv2.FONT_ITALIC, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
 
             if key_in == ord('s'):
                 register_user(d, frame, x1, x2, y1, y2)
