@@ -3,11 +3,16 @@
 > Python 3 利用 Dlib 實現人臉識別門禁系統
 
 ## Steps
-依賴套件
+安裝依賴套件
 ```
 pip3 install opencv-python
 pip3 install scikit-image
 pip3 install dlib
+```
+
+git clone
+```
+git clone https://github.com/nicktien007/Nick.NCHU.FaceDetection.git
 ```
 
 ### 圖片辦識
